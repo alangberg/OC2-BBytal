@@ -7,6 +7,8 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
+#define GDT_COUNT 50
+
 #include "defines.h"
 
 unsigned int game_fondear(unsigned int dir);
