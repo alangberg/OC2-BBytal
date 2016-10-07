@@ -49,13 +49,16 @@ start:
 
 
     ; habilitar A20
-
+    call habilitar_A20
     ; cargar la GDT
-
+    lgdt [GDT_DESC]
     ; setear el bit PE del registro CR0
-
+    mov eax, cr0
+    inc eax
+    mov cr0, eax
     ; pasar a modo protegido
-
+    jmp 0x20:modoProtegido
+    modoProtegido:
     ; acomodar los segmentos
 
     ; setear la pila
