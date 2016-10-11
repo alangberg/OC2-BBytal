@@ -26,7 +26,33 @@
 
 /* Indices en la gdt */
 /* -------------------------------------------------------------------------- */
-#define GDT_IDX_NULL_DESC           0
+
+#define GDT_0_NULL_KERNEL          0
+#define GDT_1_NULL_RESERVED        1
+#define GDT_2_NULL_RESERVED        2
+#define GDT_3_NULL_RESERVED        3
+#define GDT_4_NULL_RESERVED        4
+#define GDT_5_NULL_RESERVED        5
+#define GDT_6_NULL_RESERVED        6
+#define GDT_7_NULL_RESERVED        7
+#define GDT_8_NULL_RESERVED        8
+#define GDT_9_NULL_RESERVED        9
+#define GDT_10_NULL_RESERVED       10
+#define GDT_11_NULL_RESERVED       11
+#define GDT_11_NULL_RESERVED       11
+#define GDT_12_NULL_RESERVED       12
+#define GDT_13_NULL_RESERVED       13
+#define GDT_14_NULL_RESERVED       14
+#define GDT_15_NULL_RESERVED       15
+#define GDT_16_NULL_RESERVED       16
+#define GDT_17_NULL_RESERVED       17
+
+#define GDT_18_CODE_KERNEL         18
+#define GDT_19_DATA_KERNEL  	   19
+#define GDT_20_CODE_USER	 	   20
+#define GDT_21_DATA_USER	       21
+
+
 
 /* Direcciones de memoria */
 /* -------------------------------------------------------------------------- */

@@ -58,6 +58,7 @@ start:
     mov cr0, eax
     ; pasar a modo protegido
     jmp 0x20:modoProtegido
+BITS 32
     modoProtegido:
     ; acomodar los segmentos
 
