@@ -213,7 +213,6 @@ void imprimirDataJugadores() {
     sumarPuntos();
 
     print("  ", 43, 48, (0 << 4) | (15 & 0x0F));
-    printear("  ", 66, 48, (0 << 4) | (15 & 0x0F));
 
     print_int(MainSystem.jugadores[0].vida, 43, 48, (0 << 4) | (15 & 0x0F));
     print_int(MainSystem.jugadores[1].vida, 66, 48, (0 << 4) | (15 & 0x0F));

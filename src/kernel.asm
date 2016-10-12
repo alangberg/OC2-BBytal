@@ -63,9 +63,10 @@ BITS 32
     ; acomodar los segmentos
 
     ; setear la pila
-
+    mov esp, 0x27000
+    mov ebp, esp
     ; pintar pantalla, todos los colores, que bonito!
-
+    
     ; inicializar el manejador de memoria
 
     ; inicializar el directorio de paginas
