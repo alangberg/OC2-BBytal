@@ -343,7 +343,22 @@ gdt_entry gdt[GDT_COUNT] = {
         (unsigned char)     0x01,           /* db           */
         (unsigned char)     0x01,           /* g            */
         (unsigned char)     0x00,           /* base[31:24]  */
-    },
+    },//segmento adicional - area de pantalla kernel
+    [GDT_22_VIDEO_KERNEL] = (gdt_entry) {
+        (unsigned short)    0xffff,         /* limit[0:15]  */
+        (unsigned short)    0x8000,         /* base[0:15]   */  
+        (unsigned char)     0x0b,           /* base[23:16]  */
+        (unsigned char)     0x03,           /* type         */
+        (unsigned char)     0x01,           /* s            */
+        (unsigned char)     0x00,           /* dpl          */
+        (unsigned char)     0x01,           /* p            */
+        (unsigned char)     0x0b,           /* limit[16:19] */
+        (unsigned char)     0x00,           /* avl          */
+        (unsigned char)     0x00,           /* l            */
+        (unsigned char)     0x01,           /* db           */
+        (unsigned char)     0x00,           /* g            */
+        (unsigned char)     0x00,           /* base[31:24]  */
+    }
 };
 
 gdt_descriptor GDT_DESC = {

@@ -51,6 +51,7 @@
 #define GDT_19_DATA_KERNEL  	   19
 #define GDT_20_CODE_USER	 	   20
 #define GDT_21_DATA_USER	       21
+#define GDT_22_VIDEO_KERNEL	       22
 
 
 

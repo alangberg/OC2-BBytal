@@ -45,28 +45,42 @@ start:
     ; xchg bx, bx
 
     ; Imprimir mensaje de bienvenida
-    imprimir_texto_mr iniciando_mr_msg, iniciando_mr_len, 0x07, 0, 0
-
+    imprimir_texto_mr iniciando_mr_msg, iniciando_mr_len, 0xC, 0, 0
 
     ; habilitar A20
     call habilitar_A20
+
     ; cargar la GDT
     lgdt [GDT_DESC]
+
     ; setear el bit PE del registro CR0
     mov eax, cr0
-    inc eax
+    or eax, 1 
     mov cr0, eax
+
     ; pasar a modo protegido
-    jmp 0x20:modoProtegido
+    jmp 0x90:modoProtegido
 BITS 32
-    modoProtegido:
+modoProtegido:
+
     ; acomodar los segmentos
+    xor ax, ax
+    mov ax, 0x98 ;indice del segmento de datos * 8
+    mov ds, ax      
+    mov ss, ax      
+    mov es, ax      
+    mov fs, ax      
+    xor ax, ax
+    mov ax, 0xB0 ;indice del segmento de video * 8
+    mov gs, ax
 
     ; setear la pila
     mov esp, 0x27000
     mov ebp, esp
+
     ; pintar pantalla, todos los colores, que bonito!
-    
+    imprimir_texto_mp iniciando_mp_msg, iniciando_mp_len, 0xC, 2, 0
+
     ; inicializar el manejador de memoria
 
     ; inicializar el directorio de paginas
