@@ -98,12 +98,27 @@ modoProtegido:
     ; inicializar el scheduler
 
     ; inicializar la IDT
-
+    call idt_inicializar
+    LIDT [IDT_DESC]
     ; configurar controlador de interrupciones
 
     ; cargar la tarea inicial
 
     ; saltar a la primer tarea
+
+
+  
+
+
+
+
+
+    ;para que salte la excepcion
+    xchg bx,bx
+
+    mov cx, 0
+    div cx
+
 
     ; Ciclar infinitamente (por si algo sale mal...)
     mov eax, 0xFFFF
