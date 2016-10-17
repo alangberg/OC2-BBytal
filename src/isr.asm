@@ -15,7 +15,7 @@ extern fin_intr_pic1
 
 ;;Mensajes
 
-error_msg_0 db     'OH NO! Dividiste por cero!           '
+error_msg_0 db     'OH NO! Dividiste por cero!'
 error_msg_len_0 equ    $ - error_msg_0
 
 error_msg_1 db     'OH NO! Esta reservado por Intel!'
