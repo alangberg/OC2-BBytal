@@ -13,14 +13,19 @@
 /* -------------------------------------------------------------------------- */
 #define TRUE                    0x00000001
 #define FALSE                   0x00000000
+#define ERROR                   1
 
 
 /* Misc */
 /* -------------------------------------------------------------------------- */
-#define CANT_TAREAS             8
 
-#define TAMANO_PAGINA           0x00001000
-
+#define PAGE_DIRECTORY_KERNEL   0x27000
+#define PAGE_TABLE_KERNEL_1		0x28000
+#define PAGE_TABLE_KERNEL_2     0x68000    
+#define PAGE_SIZE				0x1000
+#define INICIO_PAGINAS_LIBRES	0x100000
+#define DIR_VIRTUAL_TAREA		0x8000000
+#define PAGINA_MAPEADA		    0x8001000
 #define TASK_SIZE               2 * 4096
 
 
@@ -92,5 +97,11 @@
 #define TASK_8_CODE_SRC_ADDR    0x0001E000
 
 #define TASK_IDLE_CODE_SRC_ADDR 0x00020000
+
+typedef struct str_pos {
+	unsigned short x;
+	unsigned short y;
+} posicion;
+
 
 #endif  /* !__DEFINES_H__ */

@@ -8,16 +8,19 @@
 global start
 
 
-;; GDT
 extern GDT_DESC
-
-;; IDT
 extern IDT_DESC
 extern idt_inicializar
-
-;; PIC
+extern mmu_inicializar
+extern mmu_inicializar_dir_kernel
 extern resetear_pic
 extern habilitar_pic
+
+%define PAGE_DIRECTORY_KERNEL   0x27000
+%define PAGE_TABLE_KERNEL_1     0x28000
+%define PAGE_TABLE_KERNEL_2     0x68000
+%define PANTALLA_MAPA           0x400000
+
 
 
 ;; Saltear seccion de datos
@@ -81,14 +84,28 @@ modoProtegido:
     ; pintar pantalla, todos los colores, que bonito!
     imprimir_texto_mp iniciando_mp_msg, iniciando_mp_len, 0xC, 2, 0
 
-    ; inicializar el manejador de memoria
+    mov edi, 10
+    mov esi, 10
 
+    push edi
+    push esi
+
+    add esp, 2*4
+
+
+    ; inicializar el manejador de memoria
+    call mmu_inicializar
     ; inicializar el directorio de paginas
+    call mmu_inicializar_dir_kernel
+    mov eax, PAGE_DIRECTORY_KERNEL
+    mov cr3, eax
 
     ; inicializar memoria de tareas
 
     ; habilitar paginacion
-
+    mov eax, cr0
+    or eax, 0x80000000
+    mov cr0, eax
     ; inicializar tarea idle
 
     ; inicializar todas las tsss

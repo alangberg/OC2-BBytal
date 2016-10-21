@@ -7,9 +7,9 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
-#define GDT_COUNT 50
-
 #include "defines.h"
+//#include "screen.h"
+//#include "tss.h"
 
 unsigned int game_fondear(unsigned int dir);
 unsigned int game_canonear(unsigned int dir_usuario, unsigned int dir_relativa);
