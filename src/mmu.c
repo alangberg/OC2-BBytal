@@ -54,35 +54,38 @@ unsigned int mmu_proxima_pagina_fisica_libre() {
 
 
 unsigned int mmu_inicializar_dir_tarea(unsigned int* codigo) {
-/*	pde_entry* page_directory_tareas = (pde_entry*) mmu_proxima_pagina_fisica_libre();
+	pde_entry* page_directory_tarea = (pde_entry*) mmu_proxima_pagina_fisica_libre(); //Armo el directorio de la nueva tarea (todo el directorio entra en una pagina de 4K)
 
 	int i;
 	for (i = 0; i < 1024; i++) {
-	    page_directory_tareas[i].present = 0;
-	    page_directory_tareas[i].rw = 0;
-	    page_directory_tareas[i].us = 0;
-	    page_directory_tareas[i].pwt = 0;
-	    page_directory_tareas[i].pcd = 0;
-	    page_directory_tareas[i].a = 0;
-	    page_directory_tareas[i].d = 0;
-	    page_directory_tareas[i].pat = 0;
-	    page_directory_tareas[i].g = 0;
-	    page_directory_tareas[i].disponible = 0;
-	    page_directory_tareas[i].base = 0;
+	    page_directory_tarea[i].present = 0;
+	    page_directory_tarea[i].rw = 0;
+	    page_directory_tarea[i].us = 0;
+	    page_directory_tarea[i].pwt = 0;
+	    page_directory_tarea[i].pcd = 0;
+	    page_directory_tarea[i].a = 0;
+	    page_directory_tarea[i].d = 0;
+	    page_directory_tarea[i].pat = 0;
+	    page_directory_tarea[i].g = 0;
+	    page_directory_tarea[i].disponible = 0;
+	    page_directory_tarea[i].base = 0;
 	}
-	page_directory_tareas[0].present = 1;
-	page_directory_tareas[0].rw = 1;
+	page_directory_tarea[0].present = 1;
+	page_directory_tarea[0].rw = 1;
+	page_directory_tarea[0].us = 1; //FRUTAAAAUAUAUAUAA???
 	
-	pte_entry* page_table_tareas = (pte_entry*) mmu_proxima_pagina_fisica_libre();	
+	pte_entry* page_table_tarea = (pte_entry*) mmu_proxima_pagina_fisica_libre(); //Armo la primer tabla de paginas	
 	for (i = 0; i < 1024; i++) {
 	
-		page_table_tareas[i].present = 1;
-		page_table_tareas[i].rw = 1;
-		page_table_tareas[i].us = 1;
-		page_table_tareas[i].base = (unsigned int) i;  // = ((i << 12) | 3)
+		page_table_tarea[i].present = 1;
+		page_table_tarea[i].rw = 1;
+		page_table_tarea[i].us = 1;
+		page_table_tarea[i].base = (unsigned int) i;  // = ((i << 12) | 3)
 	}
 
-	return (unsigned int)page_directory_tareas;*/
+	page_directory_tareas[0].base = (unsigned int) page_table_tareas >> 12; //Linkeo la tabla de paginas al PD
+
+	return (unsigned int)page_directory_tareas;
 }
 
 void mmu_mapear_pagina(unsigned int virtual, unsigned int cr3, unsigned int fisica, unsigned char us) {
