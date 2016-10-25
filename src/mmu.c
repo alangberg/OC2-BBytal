@@ -19,7 +19,7 @@
 void mmu_inicializar_dir_kernel(){
 	int* page_directory = (int*) PAGE_DIRECTORY_KERNEL;  // PAGE_DIRECTORY_KERNEL = 0x27000
 	page_directory[0] = PAGE_TABLE_KERNEL_1 + 0x3;		 // PAGE_TABLE_KERNEL_1 = 0x28000, seteo p=1 y r/w=1
-	page_directory[1] = PAGE_TABLE_KERNEL_2 + 0x3;       // PAGE_TABLE_KERNEL_2 = 0x28000 + 4MB = 0x68000
+	page_directory[1] = PAGE_TABLE_KERNEL_2 + 0x3;       // PAGE_TABLE_KERNEL_2 = 0x30000
  	
 	int i;
 	for (i = 2; i < 1024; ++i) { //pongo todo el resto de las posiciones en cero.
@@ -72,7 +72,6 @@ unsigned int mmu_inicializar_dir_tarea(unsigned int* codigo) {
 	}
 	page_directory_tarea[0].present = 1;
 	page_directory_tarea[0].rw = 1;
-	page_directory_tarea[0].us = 1; //FRUTAAAAUAUAUAUAA???
 	
 	pte_entry* page_table_tarea = (pte_entry*) mmu_proxima_pagina_fisica_libre(); //Armo la primer tabla de paginas	
 	for (i = 0; i < 1024; i++) {
@@ -83,9 +82,9 @@ unsigned int mmu_inicializar_dir_tarea(unsigned int* codigo) {
 		page_table_tarea[i].base = (unsigned int) i;  // = ((i << 12) | 3)
 	}
 
-	page_directory_tareas[0].base = (unsigned int) page_table_tareas >> 12; //Linkeo la tabla de paginas al PD
+	page_directory_tarea[0].base = (unsigned int) page_table_tarea >> 12; //Linkeo la tabla de paginas al PD
 
-	return (unsigned int)page_directory_tareas;
+	return (unsigned int)page_directory_tarea;
 }
 
 void mmu_mapear_pagina(unsigned int virtual, unsigned int cr3, unsigned int fisica, unsigned char us) {
