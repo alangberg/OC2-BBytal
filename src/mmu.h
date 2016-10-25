@@ -45,10 +45,11 @@ typedef struct str_pte_entry {
 
 void mmu_inicializar();
 void mmu_inicializar_dir_kernel();
-void mmu_mapear_pagina(unsigned int virtual, unsigned int cr3, unsigned int fisica, unsigned char us);
+void mmu_mapear_pagina(unsigned int virtual, unsigned int cr3, unsigned int fisica, unsigned char us, unsigned char rw);
+unsigned int game_dame_fisica_de_mar(posicion pos);
 unsigned int mmu_unmapear_pagina(unsigned int virtual, unsigned int cr3);
 unsigned int mmu_proxima_pagina_fisica_libre();
-unsigned int mmu_inicializar_dir_tarea(unsigned int* codigo);
+unsigned int mmu_inicializar_dir_tarea(unsigned int* codigo, posicion pos);
 
 
 #endif	/* !__MMU_H__ */
