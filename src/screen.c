@@ -52,7 +52,7 @@ void print_int(unsigned int n, unsigned int x, unsigned int y, unsigned short at
     p[y][x].a = attr;
 }
 
-void imprimirJuego_inicial(unsigned int vidaP1, unsigned int vidaP2, unsigned int ptosP1, unsigned int ptosP2) {
+void imprimirJuego_inicial() {
     int x;
     for (x = 0; x < 160; x++) print(" ", x, 0, 0);  //Pintamos el marco superior en negro
 
@@ -88,9 +88,7 @@ void imprimirJuego_inicial(unsigned int vidaP1, unsigned int vidaP2, unsigned in
 
     print("<A", 12, 46, (0 << 4) | (15 & 0x0F));
     print("B>", 19, 46, (0 << 4) | (15 & 0x0F));
-/*
-    print("*", MainSystem.jugadores[0].pos.x, MainSystem.jugadores[0].pos.y, (4 << 4) | (15 & 0x0F));
-    print("*", MainSystem.jugadores[1].pos.x, MainSystem.jugadores[1].pos.y, (1 << 4) | (15 & 0x0F));
-*/    print("Los Recursantes", 28, 0, (0 << 4) | (15 & 0x0F));
+
+    print("Los Recursantes", 28, 0, (0 << 4) | (15 & 0x0F));
 
 }

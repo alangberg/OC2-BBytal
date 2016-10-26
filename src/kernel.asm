@@ -15,6 +15,10 @@ extern mmu_inicializar
 extern mmu_inicializar_dir_kernel
 extern resetear_pic
 extern habilitar_pic
+extern imprimirJuego_inicial
+
+
+
 
 %define PAGE_DIRECTORY_KERNEL   0x27000
 %define PAGE_TABLE_KERNEL_1     0x28000
@@ -118,23 +122,14 @@ modoProtegido:
     call idt_inicializar
     LIDT [IDT_DESC]
     ; configurar controlador de interrupciones
+    call resetear_pic
+    call habilitar_pic
 
     ; cargar la tarea inicial
 
     ; saltar a la primer tarea
-
-
-  
-
-
-
-
-
-    ;para que salte la excepcion
-    xchg bx,bx
-
-    mov cx, 0
-    div cx
+    
+    ;call imprimirJuego_inicial
 
 
     ; Ciclar infinitamente (por si algo sale mal...)

@@ -33,8 +33,8 @@ idt_descriptor IDT_DESC = {
 
 #define IDT_ENTRY(numero)                                                                                         \
     idt[numero].offset_0_15 = (unsigned short) ((unsigned int)(&_isr ## numero) & (unsigned int) 0xFFFF);         \
-    idt[numero].segsel = (unsigned short) 0x90; /*MODIFICAR*/                                                     \
-    idt[numero].attr = (unsigned short) 0x0470 << 5; /*MODIFICAR P 1|DPL 00|01110|000   */                        \
+    idt[numero].segsel = (unsigned short) 0x90;                                                                   \
+    idt[numero].attr = (unsigned short) 0x0470 << 5;                                                              \
     idt[numero].offset_16_31 = (unsigned short) ((unsigned int)(&_isr ## numero) >> 16 & (unsigned int) 0xFFFF);
 
 void idt_inicializar() {
@@ -58,9 +58,11 @@ void idt_inicializar() {
     IDT_ENTRY(17);
     IDT_ENTRY(18);
     IDT_ENTRY(19);
+    IDT_ENTRY(32);
+    IDT_ENTRY(33);
 
-    // idt[102].offset_0_15 = (unsigned short) ((unsigned int)(&_isr102) & (unsigned int) 0xFFFF);
-    // idt[102].attr = (unsigned short) (0x0770 << 5);
-    // idt[102].segsel = (unsigned short) 0x20;                                             
-    // idt[102].offset_16_31 = (unsigned short) ((unsigned int)(&_isr102) >> 16 & (unsigned int) 0xFFFF);
-}
+/*    idt[66].offset_0_15 = (unsigned short) ((unsigned int)(&_isr66) & (unsigned int) 0xFFFF);
+    idt[66].attr = (unsigned short) (0x0770 << 5);
+    idt[66].segsel = (unsigned short) 0x90;                                             
+    idt[66].offset_16_31 = (unsigned short) ((unsigned int)(&_isr66) >> 16 & (unsigned int) 0xFFFF);
+*/}

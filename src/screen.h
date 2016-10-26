@@ -29,6 +29,6 @@ void print_hex(unsigned int numero, int size, unsigned int x, unsigned int y, un
 
 void print_int(unsigned int n, unsigned int x, unsigned int y, unsigned short attr);
 
-void imprimirJuego_inicial(unsigned int vidaP1, unsigned int vidaP2, unsigned int ptosP1, unsigned int ptosP2);
+void imprimirJuego_inicial();
 
 #endif  /* !__SCREEN_H__ */
